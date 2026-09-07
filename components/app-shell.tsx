@@ -24,10 +24,11 @@ import {
   X,
   LogOut,
 } from "lucide-react"
+import useSWR from "swr"
 import { BrandMark } from "@/components/brand"
 import { Badge } from "@/components/ui/badge"
 import { Spinner } from "@/components/ui/feedback"
-import { useSession, useAlerts, apiPost } from "@/lib/client/hooks"
+import { useSession, useAlerts, apiPost, fetcher } from "@/lib/client/hooks"
 import { cn } from "@/lib/utils"
 
 interface NavItem {
@@ -193,6 +194,20 @@ function Topbar({
   const unack = data?.alerts.filter((a) => !a.acknowledged).length ?? 0
   const [signingOut, setSigningOut] = React.useState(false)
 
+  const { data: integrations } = useSWR<{ chains: { chain: string }[]; liveConfiguredCount: number }>(
+    "/api/integrations",
+    fetcher,
+    { revalidateOnFocus: false },
+  )
+  const liveCount = integrations?.liveConfiguredCount ?? 0
+  const chainCount = integrations?.chains.length ?? 0
+  const anyLive = liveCount > 0
+  const statusLabel = !integrations
+    ? "Checking provider status…"
+    : anyLive
+      ? `Live intelligence — ${liveCount}/${chainCount} chains connected`
+      : "Demo mode — offline intelligence engines active"
+
   async function signOut() {
     setSigningOut(true)
     try {
@@ -213,8 +228,12 @@ function Topbar({
         <Menu className="size-4" />
       </button>
       <div className="hidden items-center gap-2 text-xs text-muted-foreground md:flex">
-        <span className="size-1.5 rounded-full bg-risk-low" />
-        Demo mode — offline intelligence engines active
+        <span
+          className="size-1.5 rounded-full"
+          style={{ background: anyLive ? "var(--risk-low)" : "var(--demo)" }}
+          aria-hidden="true"
+        />
+        {statusLabel}
       </div>
       <div className="flex items-center gap-3">
         <Link
