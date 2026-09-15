@@ -34,5 +34,10 @@ export const CHAIN_ASSET: Record<Chain, string> = {
   ethereum: "ETH",
   polygon: "MATIC",
   bsc: "BNB",
+  arbitrum: "ETH",
+  optimism: "ETH",
+  base: "ETH",
+  avalanche: "AVAX",
+  solana: "SOL",
   tron: "TRX",
 }

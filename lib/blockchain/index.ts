@@ -28,9 +28,19 @@ export * from "./data-source"
 export * from "./config"
 export { blockchain, liveProviderFor } from "./service"
 export type { WalletInspection } from "./service"
-export { EthereumProvider, PolygonProvider, BSCProvider, EvmProvider } from "./providers/evm"
+export {
+  EthereumProvider,
+  PolygonProvider,
+  BSCProvider,
+  ArbitrumProvider,
+  OptimismProvider,
+  BaseProvider,
+  AvalancheProvider,
+  EvmProvider,
+} from "./providers/evm"
 export { BitcoinProvider } from "./providers/bitcoin"
 export { TronProvider } from "./providers/tron"
+export { SolanaProvider, SolanaRpcProvider } from "./providers/solana"
 export { MockBlockchainProvider } from "./providers/mock"
 export { checkProviderHealth } from "./health"
 export { normalizeNative, normalizeToken, baseUnitsToDecimal, directionOf } from "./normalize"

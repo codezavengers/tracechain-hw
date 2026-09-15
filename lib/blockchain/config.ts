@@ -15,6 +15,10 @@ export const EVM_CHAIN_ID: Partial<Record<Chain, number>> = {
   ethereum: 1,
   polygon: 137,
   bsc: 56,
+  arbitrum: 42161,
+  optimism: 10,
+  base: 8453,
+  avalanche: 43114,
 }
 
 export const NATIVE_ASSET: Record<Chain, string> = {
@@ -22,6 +26,11 @@ export const NATIVE_ASSET: Record<Chain, string> = {
   ethereum: "ETH",
   polygon: "MATIC",
   bsc: "BNB",
+  arbitrum: "ETH",
+  optimism: "ETH",
+  base: "ETH",
+  avalanche: "AVAX",
+  solana: "SOL",
   tron: "TRX",
 }
 
@@ -30,13 +39,19 @@ export const ENV_VARS: Record<Chain, { url: string; key: string }> = {
   ethereum: { url: "TRACECHAIN_ETH_API_URL", key: "TRACECHAIN_ETH_API_KEY" },
   polygon: { url: "TRACECHAIN_POLYGON_API_URL", key: "TRACECHAIN_POLYGON_API_KEY" },
   bsc: { url: "TRACECHAIN_BSC_API_URL", key: "TRACECHAIN_BSC_API_KEY" },
+  arbitrum: { url: "TRACECHAIN_ARBITRUM_API_URL", key: "TRACECHAIN_ARBITRUM_API_KEY" },
+  optimism: { url: "TRACECHAIN_OPTIMISM_API_URL", key: "TRACECHAIN_OPTIMISM_API_KEY" },
+  base: { url: "TRACECHAIN_BASE_API_URL", key: "TRACECHAIN_BASE_API_KEY" },
+  avalanche: { url: "TRACECHAIN_AVALANCHE_API_URL", key: "TRACECHAIN_AVALANCHE_API_KEY" },
   bitcoin: { url: "TRACECHAIN_BTC_API_URL", key: "TRACECHAIN_BTC_API_KEY" },
+  solana: { url: "TRACECHAIN_SOLANA_RPC_URL", key: "TRACECHAIN_SOLANA_RPC_KEY" },
   tron: { url: "TRACECHAIN_TRON_API_URL", key: "TRACECHAIN_TRON_API_KEY" },
 }
 
 const ETHERSCAN_V2_BASE = "https://api.etherscan.io/v2/api"
 const BLOCKSTREAM_BASE = "https://blockstream.info/api"
 const TRONGRID_BASE = "https://api.trongrid.io"
+const SOLANA_RPC_BASE = "https://api.mainnet-beta.solana.com"
 
 export interface ChainConfig {
   chain: Chain
@@ -84,6 +99,16 @@ export function getChainConfig(chain: Chain): ChainConfig {
       chainId,
       configured: Boolean(apiKey),
       kind: "indexer",
+    }
+  }
+
+  if (chain === "solana") {
+    return {
+      chain,
+      baseUrl: legacyUrl || SOLANA_RPC_BASE,
+      apiKey: legacyKey,
+      configured: true,
+      kind: "explorer",
     }
   }
 

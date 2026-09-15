@@ -60,6 +60,11 @@ export const CHAIN_LABEL: Record<Chain, string> = {
   ethereum: "Ethereum",
   polygon: "Polygon",
   bsc: "BNB Chain",
+  arbitrum: "Arbitrum",
+  optimism: "Optimism",
+  base: "Base",
+  avalanche: "Avalanche",
+  solana: "Solana",
   tron: "Tron",
 }
 
@@ -68,6 +73,11 @@ export const CHAIN_TICKER: Record<Chain, string> = {
   ethereum: "ETH",
   polygon: "MATIC",
   bsc: "BNB",
+  arbitrum: "ETH",
+  optimism: "ETH",
+  base: "ETH",
+  avalanche: "AVAX",
+  solana: "SOL",
   tron: "TRX",
 }
 

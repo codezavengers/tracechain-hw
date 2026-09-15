@@ -4,7 +4,7 @@ import { blockchain, getChainConfig, ENV_VARS, DATA_SOURCE_LABEL } from "@/lib/b
 import { VASP_KNOWLEDGE_BASE } from "@/lib/vasp/knowledge-base"
 import type { Chain } from "@/lib/types"
 
-const CHAINS: Chain[] = ["bitcoin", "ethereum", "polygon", "bsc", "tron"]
+const CHAINS: Chain[] = ["bitcoin", "ethereum", "polygon", "bsc", "arbitrum", "optimism", "base", "avalanche", "solana", "tron"]
 
 // Reports the real, live provider configuration state without leaking secrets.
 export async function GET() {

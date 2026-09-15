@@ -385,3 +385,27 @@ export class BSCProvider extends EvmProvider {
     super("bsc")
   }
 }
+
+export class ArbitrumProvider extends EvmProvider {
+  constructor() {
+    super("arbitrum")
+  }
+}
+
+export class OptimismProvider extends EvmProvider {
+  constructor() {
+    super("optimism")
+  }
+}
+
+export class BaseProvider extends EvmProvider {
+  constructor() {
+    super("base")
+  }
+}
+
+export class AvalancheProvider extends EvmProvider {
+  constructor() {
+    super("avalanche")
+  }
+}

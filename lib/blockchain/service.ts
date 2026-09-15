@@ -13,9 +13,18 @@ import type {
   WalletBalance,
 } from "@/lib/blockchain/data-source"
 import { isDemoSource, MAX_INVESTIGATION_TRANSACTIONS } from "@/lib/blockchain/data-source"
-import { EthereumProvider, PolygonProvider, BSCProvider } from "@/lib/blockchain/providers/evm"
+import {
+  EthereumProvider,
+  PolygonProvider,
+  BSCProvider,
+  ArbitrumProvider,
+  OptimismProvider,
+  BaseProvider,
+  AvalancheProvider,
+} from "@/lib/blockchain/providers/evm"
 import { BitcoinProvider } from "@/lib/blockchain/providers/bitcoin"
 import { TronProvider } from "@/lib/blockchain/providers/tron"
+import { SolanaProvider } from "@/lib/blockchain/providers/solana"
 import { MockBlockchainProvider } from "@/lib/blockchain/providers/mock"
 import { recordProviderSuccess } from "@/lib/blockchain/health-state"
 import { getPriceProvider, isPriceEnrichmentConfigured } from "@/lib/blockchain/price/price-provider"
@@ -39,6 +48,16 @@ export function liveProviderFor(chain: Chain): BlockchainProvider | null {
       return new PolygonProvider()
     case "bsc":
       return new BSCProvider()
+    case "arbitrum":
+      return new ArbitrumProvider()
+    case "optimism":
+      return new OptimismProvider()
+    case "base":
+      return new BaseProvider()
+    case "avalanche":
+      return new AvalancheProvider()
+    case "solana":
+      return new SolanaProvider()
     case "tron":
       return new TronProvider()
     default:
