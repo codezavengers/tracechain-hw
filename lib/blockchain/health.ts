@@ -4,7 +4,7 @@ import { liveProviderFor } from "@/lib/blockchain/service"
 import { getLastSuccess } from "@/lib/blockchain/health-state"
 import { ProviderError } from "@/lib/blockchain/net"
 
-const CHAINS: Chain[] = ["ethereum", "polygon", "bsc", "bitcoin", "tron"]
+const CHAINS: Chain[] = ["ethereum", "polygon", "bsc", "arbitrum", "optimism", "base", "avalanche", "bitcoin", "solana", "tron"]
 
 // Well-known, always-exists addresses used purely to measure round-trip
 // latency and reachability. Never touches investigation data, never leaks
@@ -15,6 +15,7 @@ const PROBE_ADDRESS: Partial<Record<Chain, string>> = {
   bsc: "0x000000000000000000000000000000000000dEaD",
   bitcoin: "1BitcoinEaterAddressDontSendf59kuE",
   tron: "T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb",
+  solana: "11111111111111111111111111111111",
 }
 
 const DEGRADED_LATENCY_MS = 3000

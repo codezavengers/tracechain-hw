@@ -11,7 +11,7 @@ import {
 describe("detectChains / validateAddress", () => {
   it("treats a bare 0x-address as ambiguous across every EVM chain", () => {
     const candidates = detectChains("0x000000000000000000000000000000000000dEaD")
-    expect(candidates).toEqual(["ethereum", "polygon", "bsc"])
+    expect(candidates).toEqual(["ethereum", "polygon", "bsc", "arbitrum", "optimism", "base", "avalanche"])
   })
 
   it("never silently claims a single EVM chain — validateAddress flags the ambiguity", () => {
@@ -47,7 +47,7 @@ describe("detectBlockchain", () => {
     const result = detectBlockchain("0x000000000000000000000000000000000000dEaD")
     expect(result.detectedChain).toBeNull()
     expect(result.requiresUserSelection).toBe(true)
-    expect(result.possibleChains).toEqual(["ethereum", "polygon", "bsc"])
+    expect(result.possibleChains).toEqual(["ethereum", "polygon", "bsc", "arbitrum", "optimism", "base", "avalanche"])
   })
 
   it("returns zero confidence and no possible chains for garbage input", () => {

@@ -9,11 +9,16 @@ const PATTERNS: Record<Chain, RegExp> = {
   ethereum: /\b0x[a-fA-F0-9]{40}\b/,
   polygon: /\b0x[a-fA-F0-9]{40}\b/,
   bsc: /\b0x[a-fA-F0-9]{40}\b/,
+  arbitrum: /\b0x[a-fA-F0-9]{40}\b/,
+  optimism: /\b0x[a-fA-F0-9]{40}\b/,
+  base: /\b0x[a-fA-F0-9]{40}\b/,
+  avalanche: /\b0x[a-fA-F0-9]{40}\b/,
+  solana: /\b[1-9A-HJ-NP-Za-km-z]{32,44}\b/,
   // TRON base58, starts with T, length 34
   tron: /\bT[a-km-zA-HJ-NP-Z1-9]{33}\b/,
 }
 
-const EVM_CHAINS: Chain[] = ["ethereum", "polygon", "bsc"]
+const EVM_CHAINS: Chain[] = ["ethereum", "polygon", "bsc", "arbitrum", "optimism", "base", "avalanche"]
 
 // Detect which chains an address could belong to (structural).
 export function detectChains(address: string): Chain[] {

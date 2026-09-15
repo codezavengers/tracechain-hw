@@ -13,6 +13,11 @@ const ENV_MAP: Record<Chain, { url: string; key: string }> = {
   ethereum: { url: "TRACECHAIN_ETH_API_URL", key: "TRACECHAIN_ETH_API_KEY" },
   polygon: { url: "TRACECHAIN_POLYGON_API_URL", key: "TRACECHAIN_POLYGON_API_KEY" },
   bsc: { url: "TRACECHAIN_BSC_API_URL", key: "TRACECHAIN_BSC_API_KEY" },
+  arbitrum: { url: "TRACECHAIN_ARBITRUM_API_URL", key: "TRACECHAIN_ARBITRUM_API_KEY" },
+  optimism: { url: "TRACECHAIN_OPTIMISM_API_URL", key: "TRACECHAIN_OPTIMISM_API_KEY" },
+  base: { url: "TRACECHAIN_BASE_API_URL", key: "TRACECHAIN_BASE_API_KEY" },
+  avalanche: { url: "TRACECHAIN_AVALANCHE_API_URL", key: "TRACECHAIN_AVALANCHE_API_KEY" },
+  solana: { url: "TRACECHAIN_SOLANA_RPC_URL", key: "TRACECHAIN_SOLANA_RPC_KEY" },
   bitcoin: { url: "TRACECHAIN_BTC_API_URL", key: "TRACECHAIN_BTC_API_KEY" },
   tron: { url: "TRACECHAIN_TRON_API_URL", key: "TRACECHAIN_TRON_API_KEY" },
 }

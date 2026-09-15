@@ -1,7 +1,17 @@
 // TRACECHAIN AI - Core domain types
 // Shared across backend engines, API routes, and frontend.
 
-export type Chain = "bitcoin" | "ethereum" | "polygon" | "bsc" | "tron"
+export type Chain =
+  | "bitcoin"
+  | "ethereum"
+  | "polygon"
+  | "bsc"
+  | "arbitrum"
+  | "optimism"
+  | "base"
+  | "avalanche"
+  | "solana"
+  | "tron"
 
 export type DataProvenance =
   | "LIVE_BLOCKCHAIN_DATA"
