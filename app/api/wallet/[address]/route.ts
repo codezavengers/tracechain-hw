@@ -32,12 +32,20 @@ export async function GET(req: Request, { params }: { params: Promise<{ address:
   const { address } = await params
   const url = new URL(req.url)
   const chainParam = url.searchParams.get("chain") as Chain | null
+  const requestedMode = url.searchParams.get("mode") === "DEMO" ? "DEMO" : "LIVE"
 
   const validation = validateAddress(address, chainParam ?? undefined)
   if (!validation.valid || !validation.chain) {
     return NextResponse.json({ error: validation.reason, validation }, { status: 400 })
   }
   const chain = (chainParam && validation.candidateChains.includes(chainParam) ? chainParam : validation.chain) as Chain
+
+  if (requestedMode === "LIVE" && !blockchain.isLiveCapable(chain)) {
+    return NextResponse.json(
+      { error: `Live provider is not configured for ${chain}. Select Demo mode or configure the provider first.` },
+      { status: 503 },
+    )
+  }
 
   const options = parseQueryOptions(url)
   const inspection = await blockchain.inspectWallet(address, chain, options)
