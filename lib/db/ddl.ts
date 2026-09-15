@@ -79,12 +79,15 @@ CREATE TABLE IF NOT EXISTS evidence (
   type text,
   title text,
   content_hash text,
+  filename text,
   prev_hash text,
   summary text,
   provenance text,
   created_by text,
   created_at text NOT NULL
 );
+
+ALTER TABLE evidence ADD COLUMN IF NOT EXISTS filename text;
 
 CREATE TABLE IF NOT EXISTS vasp_attributions (
   id text PRIMARY KEY,

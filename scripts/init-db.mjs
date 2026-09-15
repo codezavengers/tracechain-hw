@@ -41,9 +41,10 @@ CREATE TABLE IF NOT EXISTS alerts (
 );
 CREATE TABLE IF NOT EXISTS evidence (
   id text PRIMARY KEY, investigation_id text NOT NULL REFERENCES investigations(id) ON DELETE CASCADE,
-  type text, title text, content_hash text, prev_hash text, summary text,
+  type text, title text, content_hash text, filename text, prev_hash text, summary text,
   provenance text, created_by text, created_at text NOT NULL
 );
+ALTER TABLE evidence ADD COLUMN IF NOT EXISTS filename text;
 CREATE TABLE IF NOT EXISTS vasp_attributions (
   id text PRIMARY KEY, investigation_id text NOT NULL REFERENCES investigations(id) ON DELETE CASCADE,
   address text, category text, vasp_name text, confidence double precision, data jsonb, created_at text NOT NULL
