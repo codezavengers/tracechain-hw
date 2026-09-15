@@ -33,6 +33,14 @@ export function detectChains(address: string): Chain[] {
     matches.push("tron")
   }
   if (
+    /^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(trimmed) &&
+    !/^T[a-km-zA-HJ-NP-Z1-9]{33}$/.test(trimmed) &&
+    !/^bc1[a-z0-9]{25,62}$/.test(trimmed) &&
+    !/^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$/.test(trimmed)
+  ) {
+    matches.push("solana")
+  }
+  if (
     /^bc1[a-z0-9]{25,62}$/.test(trimmed) ||
     /^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$/.test(trimmed)
   ) {

@@ -45,6 +45,7 @@ export interface PagedTokenTransfers {
 //   CACHED  - re-served from our short-lived in-memory cache
 //   MOCK    - deterministic demo data (no live source configured or a fallback)
 export type DataSource = "LIVE" | "INDEXED" | "CACHED" | "MOCK"
+export type DataMode = "LIVE" | "DEMO"
 
 export const DATA_SOURCE_LABEL: Record<DataSource, string> = {
   LIVE: "Live blockchain",

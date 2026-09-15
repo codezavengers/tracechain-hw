@@ -58,6 +58,7 @@ export default function WalletInvestigationPage() {
   const canWatch = user ? PERMISSIONS.runInvestigation(user.role) : false
   const [address, setAddress] = React.useState("")
   const [chain, setChain] = React.useState<Chain | "">("")
+  const [mode, setMode] = React.useState<"LIVE" | "DEMO">("LIVE")
   const [data, setData] = React.useState<WalletLookup | null>(null)
   const [loading, setLoading] = React.useState(false)
   const [error, setError] = React.useState<string | null>(null)
@@ -78,8 +79,9 @@ export default function WalletInvestigationPage() {
     setTraceGraph(null)
     setTraceError(null)
     try {
-      const qs = chain ? `?chain=${chain}` : ""
-      const res = await fetch(`/api/wallet/${encodeURIComponent(address.trim())}${qs}`, { credentials: "include" })
+      const qs = new URLSearchParams({ mode })
+      if (chain) qs.set("chain", chain)
+      const res = await fetch(`/api/wallet/${encodeURIComponent(address.trim())}?${qs}`, { credentials: "include" })
       const json = await res.json()
       if (!res.ok) throw new Error(json?.error || "Lookup failed.")
       setData(json as WalletLookup)
@@ -147,6 +149,13 @@ export default function WalletInvestigationPage() {
                   onChange={(e) => setAddress(e.target.value)}
                 />
               </div>
+            </div>
+            <div className="w-32 space-y-1.5">
+              <Label htmlFor="wmode">Data mode</Label>
+              <Select id="wmode" value={mode} onChange={(e) => setMode(e.target.value as "LIVE" | "DEMO")}>
+                <option value="LIVE">Live</option>
+                <option value="DEMO">Demo</option>
+              </Select>
             </div>
             <div className="w-40 space-y-1.5">
               <Label htmlFor="wchain">Chain</Label>
