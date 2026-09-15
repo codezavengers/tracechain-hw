@@ -82,6 +82,7 @@ export const evidence = pgTable("evidence", {
   type: text("type"),
   title: text("title"),
   contentHash: text("content_hash"),
+  filename: text("filename"),
   prevHash: text("prev_hash"),
   summary: text("summary"),
   provenance: text("provenance"),
